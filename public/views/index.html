@@ -4,13 +4,28 @@
     <meta charset="utf-8">
     <title>Index.html</title>
     <script src="vendors/angular.min.js" charset="utf-8"></script>
-    <!-- <script src="vendors/angular-route.min.js" charset="utf-8"></script> -->
+    <script src="vendors/angular-route.min.js" charset="utf-8"></script>
     <script src="scripts/client.js" charset="utf-8"></script>
     <link rel="stylesheet" href="/vendors/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <base href="/">
+
   </head>
-  <body>
+  <body ng-app="myApp">
     <h1>this is the index.html page</h1>
+
+    <div class="container">
+        <h1>Intention</h1>
+    </div>
+    <div class="container navigation">
+        <a href="/home"> Home </a>
+        <a href="/intentions"> Intentions </a>
+        <a href="/week"> Week </a>
+    </div>
+
+    <hr />
+    ng view starts here:
+    <ng-view></ng-view>
   </body>
 </html>
