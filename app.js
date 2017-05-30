@@ -155,19 +155,43 @@ var googleAuth = require('google-auth-library');
     }
 
     /**
-     * Lists the next 10 events on the user's primary calendar.
+     * Lists the next 10 events on the user 's primary calendar. *
      *
-     * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
-     */
+     @param {
+         google.auth.OAuth2
+     }
+ auth An authorized OAuth2 client.*/
+
+ Date.prototype.getWeek = function(start) {
+     //Calcing the starting point
+     start = start || 0;
+     var today = new Date(this.setHours(0, 0, 0, 0));
+     var day = today.getDay() - start;
+     var date = today.getDate() - day;
+
+     // Grabbing Start/End Dates
+     var StartDate = new Date(today.setDate(date));
+     var EndDate = new Date(today.setDate(date + 6));
+     return [StartDate, EndDate];
+ };
+
+ // test code
+ // var Dates = new Date().getWeek();
+ // console.log(Dates);
+ // console.log(Dates[0].toLocaleDateString() + ' to ' + Dates[1].toLocaleDateString());
+
 
 
     function listEvents(auth) {
         var calendar = google.calendar('v3');
+        var Dates = new Date().getWeek();
+
         calendar.events.list({
             auth: auth,
             calendarId: 'primary',
-            timeMin: (new Date()).toISOString(),
-            maxResults: 10,
+            timeMin: Dates[0].toISOString(),
+            timeMax: Dates[1].toISOString(),
+            maxResults: 50,
             singleEvents: true,
             orderBy: 'startTime'
         }, function(err, response) {
@@ -181,7 +205,7 @@ var googleAuth = require('google-auth-library');
                 console.log('No upcoming events found.');
                 // res.sendStatus(500);
             } else {
-                console.log('Upcoming 10 events:');
+                console.log('Events this week:');
                 // myEvents = [];
                 for (var i = 0; i < events.length; i++) {
                     var event = events[i];

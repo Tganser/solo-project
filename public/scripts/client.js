@@ -25,16 +25,16 @@ myApp.controller('LoginController', function($http){
   var vm = this;
   console.log("LoginController running");
 
-  $http({
-      method: 'GET',
-      url: '/events',
-    }).then(function success(response) {
-      console.log("back from server with:");
-      console.log(response.data);
-      return response.data;
-    });
+  // $http({
+  //     method: 'GET',
+  //     url: '/events',
+  //   }).then(function success(response) {
+  //     console.log("back from server with:");
+  //     console.log(response.data);
+  //     return response.data;
+  //   });
 
-    
+
 
 });
 
