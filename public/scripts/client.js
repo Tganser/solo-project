@@ -3,12 +3,6 @@ console.log("client sourced");
 var myApp = angular.module('myApp', ['ngRoute']);
 // var vm = this;
 
-// myApp.controller('LoginController', [function(){
-//   var vm = this;
-//   console.log("LoginController running");
-//
-// }]);
-
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/', {
     template: '',
@@ -27,11 +21,22 @@ myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 });
 
-myApp.controller('LoginController', [function(){
+myApp.controller('LoginController', function($http){
   var vm = this;
   console.log("LoginController running");
 
-}]);
+  $http({
+      method: 'GET',
+      url: '/events',
+    }).then(function success(response) {
+      console.log("back from server with:");
+      console.log(response.data);
+      return response.data;
+    });
+
+    
+
+});
 
 
 myApp.controller('IntentController', [function() {
