@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
+
 //need to add my DB stuff to a model (intention DB and for events DB)
 var Intentions = require('../models/intentionModel');
 
-router.get('/allIntentions', function(req, res) {
+router.get('/', function(req, res) {
   Intentions.find({}, function(err, results) {
     if(err){
       console.log(err);
@@ -15,19 +17,19 @@ router.get('/allIntentions', function(req, res) {
   });
 });
 
-router.post('/addIntention', function(req, res) {
+router.post('/', function(req, res) {
   console.log('inside addIntention post', req.body);
 
-  var newHero = new Hero(req.body);
-  console.log('newHero ->', newHero);
+  var newIntention = new Intentions(req.body);
+  console.log('newIntention ->', newIntention);
 
-  newHero.save(function(err) {
-    console.log('here');
+  newIntention.save(function(err) {
+    console.log('new intention .save function');
     if(err){
       console.log(err);
       res.sendStatus(500);
     }else{
-      console.log('successful hero created');
+      console.log('successful intention created');
       res.sendStatus(201);
     }
   });

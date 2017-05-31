@@ -226,9 +226,9 @@ var googleAuth = require('google-auth-library');
 
                     var newEvent = eventscollection(eventObject);
                     newEvent.save().then( function(){
-                      console.log("done")
+                      // console.log("done")
                     });
-                    console.log(eventObject);
+                    // console.log(eventObject);
                     // myEvents.push(eventAll);
                 }
                 // res.send(events);

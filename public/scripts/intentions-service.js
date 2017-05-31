@@ -13,10 +13,11 @@ this.addIntention = function(thing, thing2){
 
   return $http({
     method: 'POST',
-    url : '/addIntention',
+    url : '/addIntentions',
     data: intentionToSend
   }).then(function(response){
-    return response.data;
+    console.log("made it to the .then");
+    return response;
   });
 };
 
