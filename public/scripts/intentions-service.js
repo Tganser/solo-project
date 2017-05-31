@@ -23,7 +23,17 @@ this.addIntention = function(thing, thing2){
 
 this.removeIntention = function(thing){
   console.log("in remove Intention function!");
-  console.log(thing);
+  console.log(thing._id);
+  removeId = thing._id;
+  return $http({
+     method: 'DELETE',
+     url: '/removeIntention',
+     params: { id: removeId }
+   }).then(function(response) {
+     console.log(response);
+     return response;
+   });
+
 };
 
 this.starIntention = function(thing){
@@ -32,13 +42,15 @@ this.starIntention = function(thing){
 };
 
 this.updateIntentions = function(){
-  console.log("in update intentions");
+  console.log("in update intentions on");
   return $http({
     method: 'GET',
     url: '/allIntentions'
   }).then(function(response){
+    console.log("response from server in get intentions: ", response.data);
     return response.data;
   });
 };
+
 
 });

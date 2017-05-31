@@ -47,6 +47,8 @@ app.use(express.static('public'));
 // routers
 app.use('/addIntentions', intentionRouter);
 app.use('/allIntentions', intentionRouter);
+app.use('/removeIntention', intentionRouter);
+
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/views/index.html'));

@@ -35,4 +35,17 @@ router.post('/', function(req, res) {
   });
 });
 
+router.delete('/', function(req, res) {
+  var intentionToDelete = req.query.id;
+  Intentions.remove({ _id: intentionToDelete }, function(err) {
+    if (err) {
+      console.log('Error removing from database', err);
+      res.sendStatus(500);
+    } else {
+      console.log('successfully removed');
+      res.sendStatus(200);
+    }
+  });
+});
+
 module.exports = router;
