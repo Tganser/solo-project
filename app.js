@@ -35,9 +35,8 @@ var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
 
-//require routes
-// var indexRouter = require('./routes/index');
-// var heroRouter = require('./routes/hero');
+// require routes
+var intentionRouter = require('./routes/intentionsrouter');
 
 var app = express();
 
@@ -46,10 +45,10 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // routers
-// app.use('/', indexRouter);
-// app.use('/hero', heroRouter);
+app.use('/addIntentions', intentionRouter);
+app.use('/allIntentions', intentionRouter);
 
-app.get('/', function(req, res) {
+app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 });
 
@@ -206,6 +205,7 @@ var googleAuth = require('google-auth-library');
                 // res.sendStatus(500);
             } else {
                 console.log('Events this week:');
+                eventscollection.remove();
                 // myEvents = [];
                 for (var i = 0; i < events.length; i++) {
                     var event = events[i];
