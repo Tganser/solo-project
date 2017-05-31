@@ -18,12 +18,12 @@
   <button ng-click="ic.addIntention(ic.newInput)"> Submit </button>
   <button ng-click="ic.updateIntention()"> Update </button>
 
-
   <h3>Progress:</h3>
   <div ng-repeat = "thing in ic.myIntentions" class = "container">
       {{thing.name}}
       Important? {{thing.starred}}
       <button type="button" ng-click="ic.starIntention(thing)">Star</button>
     <button type="button" ng-click="ic.removeIntention(thing)">Remove</button>
+    <nvd3 options="ic.options" data="ic.data"></nvd3>
   </div>
 </div>

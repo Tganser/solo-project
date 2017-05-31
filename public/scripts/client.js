@@ -1,6 +1,6 @@
 console.log("client sourced");
 
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'nvd3']);
 
 myApp.config(function($routeProvider, $locationProvider) {
   $routeProvider.when('/', {

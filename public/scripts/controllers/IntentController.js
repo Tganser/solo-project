@@ -1,7 +1,7 @@
-myApp.controller('IntentController', function(IntentionsService) {
+myApp.controller('IntentController', function(IntentionsService, $scope) {
   console.log('IntentController loaded');
   var vm = this;
-  vm.intentions = ["goal1", "goal2", "goal3", "goal4"];
+  // vm.intentions = ["goal1", "goal2", "goal3", "goal4"];
   var newInput = vm.newInput;
   var hours = vm.hours;
   vm.myIntentions = [];
@@ -30,4 +30,23 @@ myApp.controller('IntentController', function(IntentionsService) {
         vm.myIntentions = data;
       });
     };
+
+    vm.variable1 = 10;
+    vm.variable2 = 20;
+    vm.variable3 = 40;
+
+  vm.options = {
+      chart: {
+          type: 'bulletChart',
+          transitionDuration: 500
+      }
+  };
+
+  vm.data = {
+      "title": "Revenue",
+      "subtitle": "US$, in thousands",
+      "ranges": [vm.variable1, vm.variable2, vm.variable3],
+      "measures": [vm.variable3],
+      "markers": [vm.variable2]
+  };
 });
