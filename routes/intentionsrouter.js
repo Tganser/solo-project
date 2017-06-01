@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 
 //need to add my DB stuff to a model (intention DB and for events DB)
 var Intentions = require('../models/intentionModel');
+// var allmyintentionsarray = [];
 
 router.get('/', function(req, res) {
   Intentions.find({}, function(err, results) {
@@ -16,6 +17,10 @@ router.get('/', function(req, res) {
     }
   });
 });
+
+// router.get('/', function(req, res){
+//
+// })
 
 router.post('/', function(req, res) {
   console.log('inside addIntention post', req.body);

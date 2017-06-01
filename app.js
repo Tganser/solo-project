@@ -5,22 +5,11 @@ var mongoose = require('mongoose');
 
 //creating DB
 mongoose.connect('localhost:27017/myevents');
+var CalendarData = require('./models/calendardatamodel');
 
-//creating schema
-var theSchema = mongoose.Schema({
-  name: String,
-  starttime: Date,
-  endtime : Date,
-  organizer: String,
-  status: String
-});
+//make collection: // this was now moved to calendardatamodel, and required above.
+// var eventscollection = mongoose.model('eventscollection', theSchema);
 
-//make collection:
-var eventscollection = mongoose.model('eventscollection', theSchema);
-
-
-//trying to bring in node.js gcal module:
-// var events = require('./quickstart.js');
 
 //from quickstart thing:
 var fs = require('fs');
@@ -37,6 +26,7 @@ var TOKEN_PATH = TOKEN_DIR + 'calendar-nodejs-quickstart.json';
 
 // require routes
 var intentionRouter = require('./routes/intentionsrouter');
+var dataRouter = require('./routes/datarouter');
 
 var app = express();
 
@@ -48,6 +38,7 @@ app.use(express.static('public'));
 app.use('/addIntentions', intentionRouter);
 app.use('/allIntentions', intentionRouter);
 app.use('/removeIntention', intentionRouter);
+app.use('/getcalendardata', dataRouter);
 
 
 app.get('/*', function(req, res) {
@@ -207,7 +198,7 @@ var googleAuth = require('google-auth-library');
                 // res.sendStatus(500);
             } else {
                 console.log('Events this week:');
-                eventscollection.remove();
+                CalendarData.remove();
                 // myEvents = [];
                 for (var i = 0; i < events.length; i++) {
                     var event = events[i];
@@ -226,7 +217,7 @@ var googleAuth = require('google-auth-library');
                       status: eventStatus
                     };
 
-                    var newEvent = eventscollection(eventObject);
+                    var newEvent = CalendarData(eventObject);
                     newEvent.save().then( function(){
                       // console.log("done")
                     });

@@ -19,7 +19,7 @@
   <button ng-click="ic.updateIntention()"> Update </button>
 
   <h3>Progress:</h3>
-  <div ng-repeat = "thing in ic.myIntentions" class = "container">
+  <div ng-repeat = "thing in ic.myIntentions" class = "container intentions">
       {{thing.name}}
       Important? {{thing.starred}}
       <button type="button" ng-click="ic.starIntention(thing)">Star</button>

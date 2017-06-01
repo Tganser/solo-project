@@ -2,6 +2,12 @@ body {
   font-family: 'Slabo 27px', serif;
 }
 
+.intentions {
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  /*color: red;*/
+}
+
 /* nvd3 version 1.8.1 (https://github.com/novus/nvd3) 2015-06-15 */
 .nvd3 .nv-axis {
     pointer-events:none;
